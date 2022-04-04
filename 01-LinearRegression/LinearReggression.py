@@ -72,20 +72,22 @@ y = np.matrix(y.values)
 #这里初始化为1x2，在函数内部会做转置
 #对于多变量线性回归，这里增加theta的长度即可
 theta = np.matrix(np.zeros((1, 2)))
-print(costFunctionJ(x, y, theta))
+print('初始代价函数Jval值:')
 #代价函数，计算均方误差
-costFunctionJ(x, y, theta)
+print(costFunctionJ(x, y, theta))
 #学习速率
 alpha = 0.01
 #迭代次数
 iters = 1000
 #批量梯度下降计算
 g, cost = gradientDescent(x, y, theta, alpha, iters)
+print('梯度下降后的Theta值:')
 print(g)
 
 
 #正规方程
 g2 = normalEqn(x, y)
+print('正规方程后的Theta值:')
 print(g2)
 
 #可视化

@@ -40,8 +40,8 @@ def costFunctionJ(theta, x, y):
     '''
     #矩阵形式，下面两个都可以，只是grad的形状不一样
     #grad = 1.0/(len(X)) * (hx - y).T.dot(x)
-    grad = 1.0/(len(X)) * x.T.dot(hx - y)
-    return np.sum(first - second) / (len(X)), grad
+    grad = 1.0/(len(x)) * x.T.dot(hx - y)
+    return np.sum(first - second) / (len(x)), grad
 
 #梯度下降
 #其实和线性回归的梯度下降是一样的，只不过H(x)的实现不一样而已
