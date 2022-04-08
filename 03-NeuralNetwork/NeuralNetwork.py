@@ -39,7 +39,6 @@ def costReg(theta, X, y, learningRate):
     #正规项中j从1开始
     reg = (learningRate / (2 * len(X))) * np.sum(np.power(theta[:,1:theta.shape[1]], 2))
     return np.sum(first - second) / len(X) + reg, gradientReg(theta, X, y, learningRate)
-    #return np.sum(first - second) / len(X) + reg, np.array(gradientReg(theta, X, y, learningRate)).ravel()
     #return np.sum(first - second) / len(X) + reg
 
 def one_vs_all(X, y, num_labels, learning_rate):
@@ -55,6 +54,7 @@ def one_vs_all(X, y, num_labels, learning_rate):
     # labels are 1-indexed instead of 0-indexed
     for i in range(1, num_labels + 1):
         theta = np.zeros(params + 1)
+        #每一个oneVSall计算，把这个one的结果挑出来置1，其他置0
         y_i = np.array([1 if label == i else 0 for label in y])
         y_i = np.reshape(y_i, (rows, 1))
 
@@ -78,7 +78,6 @@ def predict_all(X, all_theta):
     X = np.matrix(X)        #5000 x 401
     all_theta = np.matrix(all_theta)
     
-    # compute the class probability for each class on each training instance
 
     #all_theta每一行代表一个y值的最佳theta值
     # h.shape = 5000 x 10
@@ -92,7 +91,9 @@ def predict_all(X, all_theta):
     h_argmax = np.argmax(h, axis=1)
     #print(h_argmax.shape) #5000x1
     
-    # because our array was zero-indexed we need to add one for the true label prediction
+    #h_argmax中保存的是索引，0~9
+    #y只保存的是具体的值，1~10,
+    # 后面为了比较相等，因此这里需要加1
     h_argmax = h_argmax + 1
     
     return h_argmax
@@ -105,6 +106,7 @@ def predict_all(X, all_theta):
 data = loadmat('ex3data1.mat')
 #print(data['X'].shape)  #5000x400
 #print(data['y'].shape)  #5000x1
+print(data['y'][0])
 
 #all_theta = 10 * 401
 #每一行表示了对应的y值的最佳theta
