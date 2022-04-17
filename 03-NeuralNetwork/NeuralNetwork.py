@@ -60,7 +60,7 @@ def one_vs_all(X, y, num_labels, learning_rate):
 
         
         # minimize the objective function
-        #fmin = minimize(fun=costReg, x0=theta, args=(X, y_i, learning_rate), method='TNC', jac=gradientReg)
+        #jac=True表明代价函数返回值里有梯度，否则jac应该指向梯度函数 gradientReg
         fmin = minimize(fun=costReg, x0=theta, args=(X, y_i, learning_rate), method='TNC', jac=True)
         all_theta[i-1,:] = fmin.x
     
