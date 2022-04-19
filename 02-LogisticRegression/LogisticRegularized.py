@@ -84,8 +84,10 @@ theta2 = np.zeros(11)
 
 
 learningRate = 1
-#costReg(theta2, X2, y2, learningRate)
+J, grad = costReg(theta2, X2, y2, learningRate)
+print(grad.shape)
 
+'''
 result2 = opt.fmin_tnc(func=costReg, x0=theta2, args=(X2, y2, learningRate), messages=0)
 print(result2)
 
@@ -94,3 +96,4 @@ predictions = predict(theta_min, X2)
 correct = [1 if ((a == 1 and b == 1) or (a == 0 and b == 0)) else 0 for (a, b) in zip(predictions, y2)]
 accuracy = (sum(map(int, correct)) / len(correct))
 print ('accuracy = {0}%'.format(accuracy))
+'''
